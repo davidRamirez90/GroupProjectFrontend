@@ -1,0 +1,108 @@
+<!-- The content below is only a placeholder and can be replaced. -->
+<div class="grid">
+  <div class="grid__header">
+    <h1 class="grid__header__title">Enter url & port to connect to OPCUA Server</h1>
+    <mat-form-field [floatLabel]="always" class="grid__header__input grid__header__input--url">
+      <input
+        #serverUri
+        matInput
+        placeholder="Server url"
+        value="dynip-129-217-084-027.wifi.tu-dortmund.de"
+      />
+      <span matPrefix>opc.tcp://</span>
+    </mat-form-field>
+    <mat-form-field [floatLabel]="always" class="grid__header__input grid__header__input--port">
+      <input #serverPort matInput placeholder="Server port" value="4334" /> <span matPrefix>:</span>
+    </mat-form-field>
+    <button
+      (click)="connectToServer(serverUri.value, serverPort.value)"
+      mat-raised-button
+      class="grid__header__button grid__header__button--connect"
+      color="primary"
+    >
+      Connect
+    </button>
+    <button
+      (click)="disconnectFromServer()"
+      mat-raised-button
+      class="grid__header__button grid__header__button--cancel"
+      color="warn"
+    >
+      Cancel
+    </button>
+  </div>
+  <div class="grid__body">
+    <h3 class="grid__body__h3 grid__body__h3--tit1" mat-subheader>Folders</h3>
+    <!-- Main list - First level -->
+    <app-browserlist
+      class="grid__body__list grid__body__list--first"
+      [data]="folders"
+      [level]="1"
+      (selectedItem)="browseServer($event)"
+    ></app-browserlist>
+    <!-- Main list - Second level -->
+    <app-browserlist
+      *ngIf="subfolders1.length > 1"
+      class="grid__body__list grid__body__list--second"
+      [data]="subfolders1"
+      [level]="2"
+      (selectedItem)="browseServer($event)"
+    ></app-browserlist>
+    <!-- Main list - Third level -->
+    <app-browserlist
+      *ngIf="subfolders2.length > 0"
+      class="grid__body__list grid__body__list--third"
+      [level]="3"
+      [data]="subfolders2"
+      (selectedItem)="browseServer($event)"
+    ></app-browserlist>
+    <!-- Main list - Fourth level -->
+    <app-browserlist
+      *ngIf="subfolders3.length > 0"
+      class="grid__body__list grid__body__list--fourth"
+      [level]="4"
+      [data]="subfolders3"
+      (selectedItem)="browseServer($event)"
+    ></app-browserlist>
+    <div class="app__detail">
+      <div *ngIf="clickedVar !== undefined">
+        <div class="app__detail__content">
+          <h3 class="app__detail__content__title">{{ clickedVar.browseName.name }}</h3>
+          <mat-icon
+            [class.green]="isObserved(clickedVar.nodeId)"
+            class="app__detail__content__icon"
+            mat-list-icon
+            [ngSwitch]="true"
+          >
+            <span>timeline</span>
+          </mat-icon>
+          <span class="app__detail__content__field">Observed: </span>
+          <span [class.green]="isObserved(clickedVar.nodeId)" class="app__detail__content__desc">{{
+            isObserved(clickedVar.nodeId)
+          }}</span>
+          <span class="app__detail__content__field bold">General Data </span>
+          <span class="bold"></span> <span class="app__detail__content__field">Id: </span>
+          <span class="app__detail__content__desc">{{ clickedVar.nodeId }}</span>
+          <span class="app__detail__content__field">Status: </span>
+          <span class="app__detail__content__desc">{{ varData.statusCode.description }}</span>
+          <span class="app__detail__content__field bold">Data Info </span>
+          <span class="bold"></span> <span class="app__detail__content__field">Data Type: </span>
+          <span class="app__detail__content__desc">{{ varData.value.dataType }}</span>
+          <span class="app__detail__content__field">Array Type: </span>
+          <span class="app__detail__content__desc">{{ varData.value.arrayType }}</span>
+          <span class="app__detail__content__field bold">Actions </span> <span class="bold"></span>
+          <select #stdVar>
+            <option *ngFor="let item of stdVars" [value]="item.id">{{ item.name }}</option>
+          </select>
+          <span></span>
+          <button (click)="monitorVar(clickedVar.nodeId, stdVar.value)">Subscribe</button>
+        </div>
+        <app-graph [selId]="clickedVar.nodeId"></app-graph>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="printData()">Print</button>
+
+<router-outlet></router-outlet>

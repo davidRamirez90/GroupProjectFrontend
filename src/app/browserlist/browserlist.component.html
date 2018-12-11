@@ -1,0 +1,16 @@
+<mat-list class="grid__body__list" *ngIf="data.length !== 0">
+  <mat-list-item
+    (click)="clickedItem(folder)"
+    *ngFor="let folder of data"
+    class="grid__body__list__item"
+    [class.sel]="folder === selFolder"
+  >
+    <mat-icon mat-list-icon [ngSwitch]="true">
+      <span *ngSwitchCase="folder.nodeClass === 'ObjectType'">settings</span>
+      <span *ngSwitchCase="folder.nodeClass === 'Object'">folder</span>
+      <span *ngSwitchCase="folder.nodeClass === 'Variable'">timeline</span>
+      <span *ngSwitchCase="folder.nodeClass === 'Method'">code</span>
+    </mat-icon>
+    <h4 class="grid__body__h3" mat-line>{{ folder.browseName.name }}</h4>
+  </mat-list-item>
+</mat-list>
