@@ -1,0 +1,42 @@
+<h1 class="title">Automator 1000</h1>
+<p class="description">Cost effective wireless automation</p>
+<div class="grid">
+  <div class="grid__register">
+    <h2 class="grid__register__title">New account</h2>
+    <p class="grid__register__desc">In case you still don't have an account, first register here</p>
+    <form
+      class="grid__register__form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onRegister(registerForm.value)"
+    >
+      <mat-form-field>
+        <input matInput placeholder="Enter your name" formControlName="name" required />
+        <mat-error *ngIf="!registerForm.get('name').valid">Please enter your name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your username" formControlName="user" required />
+        <mat-error *ngIf="!registerForm.get('user').valid">Please enter an user</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" formControlName="pass" type="password" />
+        <mat-error *ngIf="!registerForm.get('pass').valid">Please enter a password</mat-error>
+      </mat-form-field>
+      <button class="grid__register__form__button">Submit</button>
+    </form>
+  </div>
+  <div class="grid__login">
+    <h2 class="grid__login__title">Login</h2>
+    <p class="grid__login__desc">Please use login using your username and password</p>
+    <form class="grid__login__form" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+      <mat-form-field>
+        <input matInput placeholder="Enter your username" formControlName="user" required />
+        <mat-error *ngIf="!loginForm.get('user').valid">Please enter an user</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" formControlName="pass" type="password" />
+        <mat-error *ngIf="!loginForm.get('pass').valid">Please enter a password</mat-error>
+      </mat-form-field>
+      <button class="grid__login__form__button">Submit</button>
+    </form>
+  </div>
+</div>

@@ -5,12 +5,12 @@
     class="grid__body__list__item"
     [class.sel]="folder === selFolder"
   >
-    <mat-icon mat-list-icon [ngSwitch]="true">
-      <span *ngSwitchCase="folder.nodeClass === 'ObjectType'">settings</span>
-      <span *ngSwitchCase="folder.nodeClass === 'Object'">folder</span>
-      <span *ngSwitchCase="folder.nodeClass === 'Variable'">timeline</span>
-      <span *ngSwitchCase="folder.nodeClass === 'Method'">code</span>
-    </mat-icon>
-    <h4 class="grid__body__h3" mat-line>{{ folder.browseName.name }}</h4>
+    <span class="grid__body__list__item__span" [ngSwitch]="true">
+      <mat-icon *ngSwitchCase="folder.nodeClass === 'ObjectType'" mat-list-icon>settings</mat-icon>
+      <mat-icon *ngSwitchCase="folder.nodeClass === 'Object'" mat-list-icon>folder</mat-icon>
+      <mat-icon *ngSwitchCase="folder.nodeClass === 'Variable'" mat-list-icon>timeline</mat-icon>
+      <mat-icon *ngSwitchCase="folder.nodeClass === 'Method'" mat-list-icon>code</mat-icon>
+      <h4 class="grid__body__list__item__h3" mat-line>{{ folder.browseName.name }}</h4>
+    </span>
   </mat-list-item>
 </mat-list>

@@ -5,7 +5,7 @@ import * as socketIo from 'socket.io-client';
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
   @Input() selId: Number;

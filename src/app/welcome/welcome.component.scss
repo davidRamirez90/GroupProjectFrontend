@@ -1,0 +1,57 @@
+.title {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.description {
+  text-align: center;
+  font-size: 20px;
+}
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-areas: '. login . register .';
+  grid-template-columns: auto 400px 100px 400px auto;
+  margin-top: 50px;
+}
+.grid__register {
+  grid-area: register;
+  display: flex;
+  flex-direction: column;
+  padding: 35px 25px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: white;
+}
+.grid__login__title,
+.grid__register__title {
+  text-align: left;
+  font-size: 28px;
+  margin: 5px;
+}
+.grid__login__desc,
+.grid__register__desc {
+  text-align: left;
+  font-size: 15px !important;
+}
+.grid__login__form,
+.grid__register__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid__login__form__button,
+.grid__register__form__button {
+  width: 200px;
+  margin: 30px 0 20px auto;
+}
+
+.grid__login {
+  grid-area: login;
+  display: flex;
+  flex-direction: column;
+  padding: 35px 25px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: white;
+}

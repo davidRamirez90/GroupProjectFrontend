@@ -1,0 +1,16 @@
+<div class="user">
+  <div class="user__img"><img src="../../assets/student.svg" alt="profilepic" /></div>
+  <div class="user__info">
+    <h1 class="user__info__title">Welcome user</h1>
+    <p class="user__info__description">This is a review of all your saved projects</p>
+  </div>
+</div>
+<div class="buttons">
+  <button class="buttons__newproj" (click)="addNewProject()"><mat-icon>add_</mat-icon></button>
+</div>
+<div class="grid">
+  <div class="grid__item" (click)="viewProjectDetails(p.id)" *ngFor="let p of projects">
+    <h3 class="grid__item__title">{{ p.name }}</h3>
+    <p class="grid__item__desc">{{ p.description }}</p>
+  </div>
+</div>
